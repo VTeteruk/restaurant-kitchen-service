@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.views import generic
 
-from service.models import DishType
+from service.models import DishType, Dish
 
 
 class IndexView(generic.TemplateView):
@@ -16,3 +16,8 @@ class CookViewList(generic.ListView):
 class DishTypeList(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
+
+
+class DishList(generic.ListView):
+    model = Dish
+    template_name = "service/dish_list.html"
