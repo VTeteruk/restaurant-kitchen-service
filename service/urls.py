@@ -1,5 +1,9 @@
 from django.urls import path
 
+from service.views import IndexView
+
 urlpatterns = [
-    path("", IndexView, name="index")
+    path("", IndexView.as_view(), name="index")
 ]
+
+app_name = "service"
