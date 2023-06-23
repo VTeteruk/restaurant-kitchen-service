@@ -6,6 +6,11 @@ from service.models import DishType, Dish
 
 class IndexView(generic.TemplateView):
     template_name = "service/index.html"
+    extra_context = {
+        "dish_type_list_count": DishType.objects.count(),
+        "dish_list_count": Dish.objects.count(),
+        "cook_list_count": get_user_model().objects.count()
+    }
 
 
 class CookViewList(generic.ListView):
@@ -16,6 +21,7 @@ class CookViewList(generic.ListView):
 class DishTypeList(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
+    context_object_name = "dish_type_list"
 
 
 class DishList(generic.ListView):
