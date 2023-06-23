@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
 from django.views import generic
 
+from service.forms import CookForm
 from service.models import DishType, Dish
 
 
@@ -16,6 +18,13 @@ class IndexView(generic.TemplateView):
 class CookListView(generic.ListView):
     model = get_user_model()
     template_name = "service/cook_list.html"
+
+
+class CookCreateView(generic.CreateView):
+    model = get_user_model()
+    form_class = CookForm
+    template_name = "service/cook_create.html"
+    success_url = reverse_lazy("service:cooks-list")
 
 
 class DishTypeListView(generic.ListView):
