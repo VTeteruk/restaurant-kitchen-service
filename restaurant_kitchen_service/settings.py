@@ -103,6 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "service.Cook"
 
+LOGIN_REDIRECT_URL = "service:index"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
