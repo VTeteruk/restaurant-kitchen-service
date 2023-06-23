@@ -27,3 +27,6 @@ class DishTypeList(generic.ListView):
 class DishList(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"
+    extra_context = {
+        "cook_list_count": get_user_model().objects.count()
+    }
