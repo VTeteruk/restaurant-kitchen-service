@@ -13,18 +13,18 @@ class IndexView(generic.TemplateView):
     }
 
 
-class CookViewList(generic.ListView):
+class CookListView(generic.ListView):
     model = get_user_model()
     template_name = "service/cook_list.html"
 
 
-class DishTypeList(generic.ListView):
+class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
     context_object_name = "dish_type_list"
 
 
-class DishList(generic.ListView):
+class DishListView(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"
     extra_context = {
