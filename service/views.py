@@ -19,6 +19,9 @@ class CookListView(generic.ListView):
     model = get_user_model()
     template_name = "service/cook_list.html"
     paginate_by = 5
+    extra_context = {
+        "full_number_of_cooks": get_user_model().objects.count()
+    }
 
 
 class CookCreateView(generic.CreateView):
