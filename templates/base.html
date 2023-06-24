@@ -33,7 +33,11 @@
 
   {% endblock header %}
 
-  {% block content %}{% endblock content %}
+  {% block content %}
+  {% endblock content %}
+  {% block pagination %}
+    {% include 'includes/pagination.html' %}
+  {% endblock pagination %}
 
   {% block footer %}
 
