@@ -24,7 +24,7 @@ class CookCreateView(generic.CreateView):
     model = get_user_model()
     form_class = CookForm
     template_name = "service/cook_create.html"
-    success_url = reverse_lazy("service:cooks-list")
+    success_url = reverse_lazy("login")
 
 
 class DishTypeListView(generic.ListView):
