@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -8,7 +9,16 @@ class DishType(models.Model):
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField()
+    years_of_experience = models.IntegerField(
+        validators=[
+            MinValueValidator(
+                0, message='Years of experience must be a positive number.'
+            ),
+            MaxValueValidator(
+                50, message='Years of experience cannot exceed 50.'
+            ),
+        ]
+    )
 
     class Meta:
         ordering = ["username"]
