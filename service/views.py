@@ -18,6 +18,7 @@ class IndexView(generic.TemplateView):
 class CookListView(generic.ListView):
     model = get_user_model()
     template_name = "service/cook_list.html"
+    paginate_by = 5
 
 
 class CookCreateView(generic.CreateView):
@@ -31,6 +32,7 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
     context_object_name = "dish_type_list"
+    paginate_by = 5
 
 
 class DishListView(generic.ListView):
@@ -39,3 +41,4 @@ class DishListView(generic.ListView):
     extra_context = {
         "cook_list_count": get_user_model().objects.count()
     }
+    paginate_by = 5
