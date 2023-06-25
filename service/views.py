@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
-from service.forms import CookForm
+from service.forms import CookForm, CookSearchForm
 from service.models import DishType, Dish
 
 
@@ -22,6 +23,23 @@ class CookListView(generic.ListView):
     extra_context = {
         "full_number_of_cooks": get_user_model().objects.count()
     }
+
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super(CookListView, self).get_context_data(**kwargs)
+
+        username = self.request.GET.get("username")
+
+        context["search_form"] = CookSearchForm(initial={"username": username})
+
+        return context
+
+    def get_queryset(self) -> QuerySet:
+        self.queryset = get_user_model().objects.all()
+        username = self.request.GET.get("username")
+
+        if username:
+            return self.queryset.filter(username__icontains=username)
+        return self.queryset.all()
 
 
 class CookCreateView(generic.CreateView):

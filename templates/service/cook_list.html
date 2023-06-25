@@ -40,7 +40,10 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5 ms-auto">
-        <h4 class="mb-1">Search</h4>
+        <form action="" method="get" class="form-check-inline" style="display: flex">
+          {{ search_form }}
+          <input type="submit" value="Search" class="btn bg-gradient-primary mb-0" style="margin-left: 5px">
+        </form>
       </div>
       <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-end mt-5">
         <a href="{% url 'service:cook-create' %}" class="btn btn-primary">Add chief</a>
