@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+  <div class="pt-5">
+  <div class="container">
+    <div class="row" style="margin-top: 50px">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+        <th>Implemented dishes</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ cook.id }}</td>
+            <td>{{ cook.username }}{% if chef.id == user.id %} (Me) {% endif %}</td>
+            <td>{{ cook.first_name }}</td>
+            <td>{{ cook.last_name }}</td>
+            <td>{{ cook.years_of_experience }}</td>
+            <td>{% if cook.dishes.all %}{{ cook.dishes.all }}{% endif %}</td>
+        </tr>
+    </tbody>
+  </table>
+    </div>
+    </div>
+    </div>
 
-</body>
-</html>
+{% endblock %}
