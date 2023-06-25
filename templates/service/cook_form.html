@@ -17,8 +17,8 @@
         <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
           <div class="card card-plain">
             <div class="card-header pb-0 text-left">
-              <h4 class="font-weight-bolder">Sign Up</h4>
-              <p class="mb-0">Enter your valid credentials to register</p>
+              <h4 class="font-weight-bolder">{{ object|yesno:"Update the information,Sing up" }}</h4>
+              <p class="mb-0">Enter your valid credentials to {{ object|yesno:"update,register" }}</p>
             </div>
             <div class="card-body">
               <form method="post" action="#" role="form">
@@ -31,16 +31,20 @@
                   <span class="text-danger"> {{ field.errors }} </span>
                 {% endfor %}
                 <div class="text-center">
-                  <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
+                  <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">{{ object|yesno:"Update,Sing up" }}</button>
                 </div>
               </form>
             </div>
+            {% if request.user.is_authenticated %}
+
+            {% else %}
             <div class="card-footer text-center pt-0 px-lg-2 px-1">
               <p class="mb-4 text-sm mx-auto">
                 Already have an account?
                 <a href="{% url 'login' %}" class="text-primary text-gradient font-weight-bold">Sign In</a>
               </p>
             </div>
+            {% endif %}
           </div>
         </div>
         <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
@@ -50,7 +54,7 @@
               <img class="max-width-500 w-100 position-relative z-index-2" src="{% static 'img/illustrations/pizza.png' %}" alt="pizza">
             </div>
             <h4 class="mt-5 text-white font-weight-bolder">Join right now!</h4>
-            <p class="text-white">Start creating your own masterpieces.</p>
+            <p class="text-white">{{ object|yesno:"Continue,Start" }} creating your own masterpieces.</p>
           </div>
         </div>
       </div>
