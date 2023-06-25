@@ -17,7 +17,7 @@
     <tbody>
         <tr>
             <td>{{ cook.id }}</td>
-            <td>{{ cook.username }}{% if chef.id == user.id %} (Me) {% endif %}</td>
+            <td>{{ cook.username }}{% if cook.id == user.id %} (Me) {% endif %}</td>
             <td>{{ cook.first_name }}</td>
             <td>{{ cook.last_name }}</td>
             <td>{{ cook.years_of_experience }}</td>
