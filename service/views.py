@@ -45,7 +45,7 @@ class CookListView(generic.ListView):
 class CookCreateView(generic.CreateView):
     model = get_user_model()
     form_class = CookForm
-    template_name = "service/cook_create.html"
+    template_name = "service/cook_form.html"
     success_url = reverse_lazy("login")
 
 
@@ -57,7 +57,14 @@ class CookDetailView(generic.DetailView):
 class CookDeleteView(generic.DeleteView):
     model = get_user_model()
     template_name = "service/cook-delete.html"
-    success_url = reverse_lazy("service:index")
+    success_url = reverse_lazy("service:cooks-list")
+
+
+class CookUpdateView(generic.UpdateView):
+    model = get_user_model()
+    template_name = "service/cook_form.html"
+    success_url = reverse_lazy("service:cooks-list")
+    fields = ("username", "first_name", "last_name", "years_of_experience")
 
 
 class DishTypeListView(generic.ListView):
