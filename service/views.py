@@ -49,6 +49,11 @@ class CookCreateView(generic.CreateView):
     success_url = reverse_lazy("login")
 
 
+class CookDetailView(generic.DetailView):
+    model = get_user_model()
+    template_name = "service/cook_detail.html"
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
