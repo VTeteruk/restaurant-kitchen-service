@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
@@ -49,18 +50,18 @@ class CookCreateView(generic.CreateView):
     success_url = reverse_lazy("login")
 
 
-class CookDetailView(generic.DetailView):
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
     template_name = "service/cook_detail.html"
 
 
-class CookDeleteView(generic.DeleteView):
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = get_user_model()
     template_name = "service/cook-delete.html"
     success_url = reverse_lazy("service:cooks-list")
 
 
-class CookUpdateView(generic.UpdateView):
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = get_user_model()
     template_name = "service/cook_form.html"
     success_url = reverse_lazy("service:cooks-list")
