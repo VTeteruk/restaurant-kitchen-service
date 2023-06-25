@@ -54,6 +54,12 @@ class CookDetailView(generic.DetailView):
     template_name = "service/cook_detail.html"
 
 
+class CookDeleteView(generic.DeleteView):
+    model = get_user_model()
+    template_name = "service/cook-delete.html"
+    success_url = reverse_lazy("service:index")
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"

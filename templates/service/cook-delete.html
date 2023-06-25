@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="pt-5">
+  <div class="container">
+    <div class="row" style="margin-top: 50px">
+      <h2>Are you sure that you want to delete this chef?</h2>
+      <p><i>All dishes that created this chef will be deleted as well</i></p>
+      <form method="post" action="">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete" class="btn bg-gradient-danger">
+      </form>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
