@@ -155,6 +155,9 @@ class DishCreateView(LoginRequiredMixin, generic.CreateView):
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
+    queryset = Dish.objects.select_related(
+        "dish_type"
+    ).prefetch_related("cooks")
     template_name = "service/dish_detail.html"
 
 
