@@ -4,7 +4,7 @@ from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
-from service.forms import CookForm, CookSearchForm
+from service.forms import CookForm, CookSearchForm, DishForm
 from service.models import DishType, Dish
 
 
@@ -86,6 +86,6 @@ class DishListView(generic.ListView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishForm
     template_name = "service/dish_form.html"
     success_url = reverse_lazy("service:dishes-list")

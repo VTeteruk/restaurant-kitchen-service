@@ -1,7 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from service.models import Cook
+from service.models import Cook, Dish, DishType
 
 
 class CookForm(UserCreationForm):
@@ -21,3 +22,19 @@ class CookSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by username..."})
     )
+
+
+class DishForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'})
+    )
+    dish_type = forms.ModelChoiceField(
+        queryset=DishType.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
+    class Meta:
+        model = Dish
+        fields = "__all__"
+
