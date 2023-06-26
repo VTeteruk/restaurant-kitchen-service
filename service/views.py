@@ -4,8 +4,8 @@ from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
-from service.forms import CookForm, CookSearchForm, DishForm
-from service.models import DishType, Dish, Cook
+from service.forms import CookForm, CookSearchForm
+from service.models import DishType, Dish
 
 
 class IndexView(generic.TemplateView):
