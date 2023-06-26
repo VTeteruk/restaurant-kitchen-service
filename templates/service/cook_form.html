@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} <title>Kitchen service - Sing up</title> {% endblock title %}
+{% block title %} <title>Kitchen service - {{ object|yesno:"Update the information,Sing up" }}</title> {% endblock title %}
 {% block body %} class="sign-in-illustration" {% endblock body %}
 
 {% block header %}
