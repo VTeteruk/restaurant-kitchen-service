@@ -44,19 +44,36 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5 ms-auto">
-        <h4 class="mb-1">Thank you for your support!</h4>
+        <form action="" method="get" class="form-check-inline" style="display: flex">
+          {{ search_form }}
+          <input type="submit" value="Search" class="btn bg-gradient-primary mb-0" style="margin-left: 5px">
+        </form>
       </div>
       <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-end mt-5">
-        <a href="https://twitter.com/" class="btn btn-info mb-0 me-2" target="_blank">
-          <i class="fab fa-twitter me-1"></i> Tweet
-        </a>
-        <a href="https://www.facebook.com/" class="btn btn-primary mb-0 me-2" target="_blank">
-          <i class="fab fa-facebook-square me-1"></i> Share
-        </a>
-        <a href="https://www.pinterest.com/" class="btn btn-dark mb-0 me-2" target="_blank">
-          <i class="fab fa-pinterest me-1"></i> Pin it
-        </a>
+        <a href="{% url 'service:dish-create' %}" class="btn btn-primary">Add dish</a>
       </div>
+      {% if dish_list %}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Dish type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dish in dish_list %}
+              <tr>
+                  <td>{{ dish.id }}</td>
+                  <td>{{ dish.name }}</td>
+                  <td>{{ dish.price }}</td>
+                  <td>{{ dish.type_dish.get }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
     </div>
   </div>
 </div>
