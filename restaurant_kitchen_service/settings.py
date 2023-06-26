@@ -25,6 +25,12 @@ SECRET_KEY = "django-insecure-z6k=ljm56h2^6)k3mo8^3qy82xa!i0(w!w8!d1$$y6yoiai93p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
 ALLOWED_HOSTS = []
 
 
@@ -37,11 +43,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "debug_toolbar",
     'service',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -55,9 +63,8 @@ ROOT_URLCONF = "restaurant_kitchen_service.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
         "APP_DIRS": True,
+        "DIRS": [BASE_DIR / 'templates'],
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
