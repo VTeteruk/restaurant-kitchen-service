@@ -78,6 +78,13 @@ class DishTypeListView(generic.ListView):
     paginate_by = 5
 
 
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    template_name = "service/dish_type_form.html"
+    success_url = reverse_lazy("service:dish-type-list")
+
+
 class DishListView(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"
