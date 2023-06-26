@@ -21,7 +21,7 @@
             <td>{{ cook.first_name }}</td>
             <td>{{ cook.last_name }}</td>
             <td>{{ cook.years_of_experience }}</td>
-            <td>{% if cook.dishes %}{% for dish in cook.dishes.all|slice:":3" %}{{ dish.name }}{% endfor %}{% endif %}</td>
+            <td>{% if cook.dishes %}{% for dish in cook.dishes.all|slice:":3" %}{{ dish.name }} {% endfor %}{% endif %}</td>
         </tr>
     </tbody>
   </table>
