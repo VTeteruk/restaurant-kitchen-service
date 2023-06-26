@@ -72,6 +72,9 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
     context_object_name = "dish_type_list"
+    extra_context = {
+        "full_number_of_dish_types": DishType.objects.count()
+    }
     paginate_by = 5
 
 
