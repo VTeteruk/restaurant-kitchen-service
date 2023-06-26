@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} <title>Kitchen service - Create dish</title> {% endblock title %}
+{% block title %} <title>Kitchen service - {{ object|yesno:"Update,Create" }} dish</title> {% endblock title %}
 {% block body %} class="sign-in-illustration" {% endblock body %}
 
 {% block header %}
@@ -17,7 +17,7 @@
         <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
           <div class="card card-plain">
             <div class="card-header pb-0 text-left">
-              <h4 class="font-weight-bolder">{{ object|yesno:"Update the,Create a" }} dish</h4>
+              <h4 class="font-weight-bolder" style="margin-top: 55px">{{ object|yesno:"Update the,Create a" }} dish</h4>
             </div>
             <div class="card-body">
               <form method="post" action="#" role="form">
