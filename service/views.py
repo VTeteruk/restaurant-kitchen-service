@@ -4,7 +4,8 @@ from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
-from service.forms import CookForm, CookSearchForm, DishForm, DishSearchForm
+from service.forms import CookForm, CookSearchForm, DishForm, DishSearchForm, \
+    DishTypeSearchForm
 from service.models import DishType, Dish
 
 
@@ -76,6 +77,22 @@ class DishTypeListView(generic.ListView):
         "full_number_of_dish_types": DishType.objects.count()
     }
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super(DishTypeListView, self).get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = DishTypeSearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self) -> QuerySet:
+        self.queryset = DishType.objects.all()
+        name = self.request.GET.get("name")
+
+        if name:
+            return self.queryset.filter(name__icontains=name)
+        return self.queryset
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
