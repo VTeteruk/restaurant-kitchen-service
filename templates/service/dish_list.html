@@ -12,11 +12,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-7 text-center mx-auto">
-          <h1 class="text-white pt-3 mt-n5">{{ dish_list.count }}</h1>
+          <h1 class="text-white pt-3 mt-n5">{{ full_number_of_cooks }}</h1>
           <p class="lead text-white mt-3">
-            {% if dish_list.count == 1 %} dish was added by professional{{ cook_list_count|pluralize }}
-            {% else %} dishes were added by professional{{ cook_list_count|pluralize }}
-            {% endif %}
+            dishes were added by professionals
           </p>
         </div>
       </div>

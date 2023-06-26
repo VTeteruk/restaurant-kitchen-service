@@ -79,7 +79,7 @@ class DishListView(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"
     extra_context = {
-        "cook_list_count": get_user_model().objects.count()
+        "full_number_of_cooks": Dish.objects.count()
     }
     paginate_by = 5
 
@@ -92,7 +92,7 @@ class DishListView(generic.ListView):
         return context
 
     def get_queryset(self) -> QuerySet:
-        self.queryset = Dish.objects.all()
+        self.queryset = Dish.objects.all().select_related("dish_type")
         name = self.request.GET.get("name")
 
         if name:
