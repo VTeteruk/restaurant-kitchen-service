@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="pt-5">
+  <div class="container">
+    <div class="row" style="margin-top: 50px">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Dish_type</th>
+        <th>Cooks</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ dish.id }}</td>
+            <td>{{ dish.name }}</td>
+            <td>{{ dish.description }}</td>
+            <td>{{ dish.price }}</td>
+            <td>{{ dish.dish_type }}</td>
+            <td>{% if dish.cooks.all %}{% for cook in dish.cooks.all|slice:":3" %}{{ cook.username }} {% endfor %}{% if dish.cooks.all|length > 3 %}...{% endif %}{% endif %}</td>
+        </tr>
+    </tbody>
+  </table>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
