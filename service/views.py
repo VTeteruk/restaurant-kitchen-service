@@ -85,6 +85,13 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("service:dish-types-list")
 
 
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = DishType
+    fields = "__all__"
+    template_name = "service/dish_type_detail.html"
+    success_url = reverse_lazy("service:dish-types-list")
+
+
 class DishListView(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"

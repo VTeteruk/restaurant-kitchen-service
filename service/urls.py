@@ -14,6 +14,7 @@ from service.views import (
     DishDeleteView,
     DishUpdateView,
     DishTypeCreateView,
+    DishTypeDetailView,
 )
 
 urlpatterns = [
@@ -34,6 +35,11 @@ urlpatterns = [
         "dish_type/create/",
         DishTypeCreateView.as_view(),
         name="dish-type-create"
+    ),
+    path(
+        "dish_type/detail/<int:pk>/",
+        DishTypeDetailView.as_view(),
+        name="dish-type-detail"
     ),
     path("dish/", DishListView.as_view(), name="dishes-list"),
     path("dish/create/", DishCreateView.as_view(), name="dish-create"),
