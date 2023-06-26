@@ -26,8 +26,12 @@
                 {% for field in form %}
                   <div class="mb-3">
                       <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
-                      {% if forloop.counter <= 3 %}
+                      {% if forloop.counter <= 2 %}
                           <input class="form-control" type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.auto_id }}" placeholder="{{ field.label }}">
+                        {% elif forloop.counter == 3 %}
+                        <div class="mb-3">
+                            <input class="form-control" type="number" step="0.01" name="{{ form.price.html_name }}" id="{{ form.price.id_for_label }}" placeholder="{{ form.price.label }}">
+                        </div>
                       {% else %}
                           {{ field }}
                       {% endif %}
