@@ -4,8 +4,8 @@ from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
-from service.forms import CookForm, CookSearchForm
-from service.models import DishType, Dish
+from service.forms import CookForm, CookSearchForm, DishForm
+from service.models import DishType, Dish, Cook
 
 
 class IndexView(generic.TemplateView):
@@ -82,3 +82,10 @@ class DishListView(generic.ListView):
         "cook_list_count": get_user_model().objects.count()
     }
     paginate_by = 5
+
+
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    fields = "__all__"
+    template_name = "service/dish_form.html"
+    success_url = reverse_lazy("service:dishes-list")
