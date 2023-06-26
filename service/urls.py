@@ -10,6 +10,7 @@ from service.views import (
     CookDeleteView,
     CookUpdateView,
     DishCreateView,
+    DishDetailView,
 )
 
 urlpatterns = [
@@ -27,7 +28,10 @@ urlpatterns = [
     ),
     path("dish_type/", DishTypeListView.as_view(), name="dish-types-list"),
     path("dish/", DishListView.as_view(), name="dishes-list"),
-    path("dish/create/", DishCreateView.as_view(), name="dish-create")
+    path("dish/create/", DishCreateView.as_view(), name="dish-create"),
+    path(
+        "dish/detail/<int:pk>/", DishDetailView.as_view(), name="dish-detail"
+    ),
 ]
 
 app_name = "service"
