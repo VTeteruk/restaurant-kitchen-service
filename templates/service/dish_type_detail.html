@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} <title>Kitchen service - Detail dish type</title> {% endblock title %}
+{% block content %}
+  <div class="pt-5">
+  <div class="container">
+    <div class="row" style="margin-top: 50px">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Used in such dishes</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ dishtype.id }}</td>
+            <td>{{ dishtype.name }}</td>
+            <td>{% for dish in dishtype.dishes.all|slice:"5" %}{{ dish }} {% endfor %}{% if dishtype.dishes.count > 5 %}...{% endif %}</td>
+        </tr>
+    </tbody>
+  </table>
+    <ul class="navbar-nav navbar-nav-hover" style="display: inline">
+      <li class="nav-item my-auto ms-3 ms-lg-0" style="display: inline">
+        <a href="{% url 'service:dish-type-delete' pk=dishtype.id %}"
+          class="btn btn-sm  bg-gradient-dark  btn-round mb-0 me-1 mt-2 mt-md-0" style="display: inline">Delete</a>
+      </li>
+      <li class="nav-item my-auto ms-3 ms-lg-0" style="display: inline">
+        <a href="{% url 'service:dish-type-update' pk=dishtype.id %}"
+          class="btn btn-sm  bg-gradient-faded-info  btn-round mb-0 me-1 mt-2 mt-md-0" style="display: inline; color: #fff">Update</a>
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

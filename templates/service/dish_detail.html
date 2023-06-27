@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="pt-5">
+  <div class="container">
+    <div class="row" style="margin-top: 50px">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Dish_type</th>
+        <th>Cooks</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ dish.id }}</td>
+            <td>{{ dish.name }}</td>
+            <td>{{ dish.description }}</td>
+            <td>{{ dish.price }}</td>
+            <td>{{ dish.dish_type }}</td>
+            <td>{% if dish.cooks.all %}{% for cook in dish.cooks.all|slice:":3" %}{{ cook.username }} {% endfor %}{% if dish.cooks.all|length > 3 %}...{% endif %}{% endif %}</td>
+        </tr>
+    </tbody>
+  </table>
+    <ul class="navbar-nav navbar-nav-hover" style="display: inline">
+      <li class="nav-item my-auto ms-3 ms-lg-0" style="display: inline">
+        <a href="{% url 'service:dish-delete' pk=dish.id %}"
+          class="btn btn-sm  bg-gradient-dark  btn-round mb-0 me-1 mt-2 mt-md-0" style="display: inline">Delete</a>
+      </li>
+      <li class="nav-item my-auto ms-3 ms-lg-0" style="display: inline">
+        <a href="{% url 'service:dish-update' pk=dish.id %}"
+          class="btn btn-sm  bg-gradient-faded-info  btn-round mb-0 me-1 mt-2 mt-md-0" style="display: inline; color: #fff">Update</a>
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
