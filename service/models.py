@@ -15,10 +15,10 @@ class Cook(AbstractUser):
     years_of_experience = models.IntegerField(
         validators=[
             MinValueValidator(
-                0, message='Years of experience must be a positive number.'
+                0, message="Years of experience must be a positive number."
             ),
             MaxValueValidator(
-                50, message='Years of experience cannot exceed 50.'
+                50, message="Years of experience cannot exceed 50."
             ),
         ]
     )

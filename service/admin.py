@@ -12,11 +12,13 @@ class CookAdmin(UserAdmin):
         ("Experience", {"fields": ("years_of_experience",)}),
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
-        ("Experience", {
+        (
+            "Experience",
+            {
                 "classes": ("wide",),
                 "fields": ("years_of_experience",),
             },
-         ),
+        ),
     )
 
 

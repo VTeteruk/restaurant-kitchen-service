@@ -31,7 +31,7 @@ class PrivateDetailTest(TestCase):
         self.user = get_user_model().objects.create_user(
             username="test_username",
             password="test12345",
-            years_of_experience=40
+            years_of_experience=40,
         )
         self.client.force_login(self.user)
 
@@ -39,24 +39,19 @@ class PrivateDetailTest(TestCase):
             name="test_name",
             description="test_description",
             price=20,
-            dish_type=DishType.objects.create(name="test")
+            dish_type=DishType.objects.create(name="test"),
         )
 
         DishType.objects.create(name="test")
 
     def test_retrieve_cook_details(self) -> None:
         get_user_model().objects.create_user(
-            username="test",
-            password="test12345",
-            years_of_experience=1
+            username="test", password="test12345", years_of_experience=1
         )
         response = self.client.get(COOK_DETAIL_URL)
 
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(
-            self.user.id,
-            response.context["cook"].id
-        )
+        self.assertEquals(self.user.id, response.context["cook"].id)
 
     def test_retrieve_dish_details(self) -> None:
         response = self.client.get(DISH_DETAIL_URL)

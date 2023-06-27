@@ -4,8 +4,13 @@ from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
-from service.forms import CookForm, CookSearchForm, DishForm, DishSearchForm, \
-    DishTypeSearchForm
+from service.forms import (
+    CookForm,
+    CookSearchForm,
+    DishForm,
+    DishSearchForm,
+    DishTypeSearchForm,
+)
 from service.models import DishType, Dish
 
 
@@ -14,7 +19,7 @@ class IndexView(generic.TemplateView):
     extra_context = {
         "dish_type_list_count": DishType.objects.count(),
         "dish_list_count": Dish.objects.count(),
-        "cook_list_count": get_user_model().objects.count()
+        "cook_list_count": get_user_model().objects.count(),
     }
 
 
@@ -22,9 +27,7 @@ class CookListView(generic.ListView):
     model = get_user_model()
     template_name = "service/cook_list.html"
     paginate_by = 5
-    extra_context = {
-        "full_number_of_cooks": get_user_model().objects.count()
-    }
+    extra_context = {"full_number_of_cooks": get_user_model().objects.count()}
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
         context = super(CookListView, self).get_context_data(**kwargs)
@@ -73,9 +76,7 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
     context_object_name = "dish_type_list"
-    extra_context = {
-        "full_number_of_dish_types": DishType.objects.count()
-    }
+    extra_context = {"full_number_of_dish_types": DishType.objects.count()}
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
@@ -124,9 +125,7 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class DishListView(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"
-    extra_context = {
-        "full_number_of_cooks": Dish.objects.count()
-    }
+    extra_context = {"full_number_of_cooks": Dish.objects.count()}
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
@@ -155,9 +154,9 @@ class DishCreateView(LoginRequiredMixin, generic.CreateView):
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
-    queryset = Dish.objects.select_related(
-        "dish_type"
-    ).prefetch_related("cooks")
+    queryset = Dish.objects.select_related("dish_type").prefetch_related(
+        "cooks"
+    )
     template_name = "service/dish_detail.html"
 
 

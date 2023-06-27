@@ -13,7 +13,7 @@ class CreateCookTest(TestCase):
             "password2": "test12345",
             "first_name": "test_first_name",
             "last_name": "test_last_name",
-            "years_of_experience": 25
+            "years_of_experience": 25,
         }
 
         self.client.post(reverse("service:cook-create"), data=form_data)
@@ -25,16 +25,13 @@ class CreateCookTest(TestCase):
         self.assertEquals(new_user.first_name, form_data["first_name"])
         self.assertEquals(new_user.last_name, form_data["last_name"])
         self.assertEquals(
-            new_user.years_of_experience,
-            form_data["years_of_experience"]
+            new_user.years_of_experience, form_data["years_of_experience"]
         )
 
 
 class PublicCreateDishAndDishTypeTest(TestCase):
     def test_create_dish_type(self) -> None:
-        form_data = {
-            "name": "test_name"
-        }
+        form_data = {"name": "test_name"}
 
         self.client.post(reverse("service:dish-type-create"), data=form_data)
 
@@ -45,7 +42,7 @@ class PublicCreateDishAndDishTypeTest(TestCase):
             "name": "test_name",
             "description": "test_description",
             "price": 25,
-            "dish_type": DishType.objects.create(name="name")
+            "dish_type": DishType.objects.create(name="name"),
         }
 
         self.client.post(reverse("service:dish-create"), data=form_data)
@@ -56,9 +53,7 @@ class PublicCreateDishAndDishTypeTest(TestCase):
 class PrivateCreateDishAndDishTypeTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
-            username="test",
-            password="test12345",
-            years_of_experience=25
+            username="test", password="test12345", years_of_experience=25
         )
 
         self.client.force_login(self.user)
@@ -72,7 +67,7 @@ class PrivateCreateDishAndDishTypeTest(TestCase):
             "description": "test",
             "price": 25,
             "dish_type": dish_type.id,
-            "cooks": [cook.id]
+            "cooks": [cook.id],
         }
 
         self.client.post(reverse("service:dish-create"), data=form_data)
@@ -85,13 +80,9 @@ class PrivateCreateDishAndDishTypeTest(TestCase):
         self.assertEquals(list(new_dish.cooks.all()), [cook])
 
     def test_create_dish_type(self) -> None:
-        form_data = {
-            "name": "test_name"
-        }
+        form_data = {"name": "test_name"}
 
         self.client.post(reverse("service:dish-type-create"), data=form_data)
-        new_dish_type = DishType.objects.get(
-            name=form_data.get("name")
-        )
+        new_dish_type = DishType.objects.get(name=form_data.get("name"))
 
         self.assertEquals(new_dish_type.name, form_data["name"])

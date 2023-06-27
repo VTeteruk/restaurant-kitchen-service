@@ -16,7 +16,9 @@ class Migration(migrations.Migration):
             field=models.IntegerField(
                 validators=[
                     django.core.validators.MinValueValidator(
-                        0, message="Years of experience must be a positive number."
+                        0,
+                        message=("Years of experience "
+                                 "must be a positive number."),
                     ),
                     django.core.validators.MaxValueValidator(
                         50, message="Years of experience cannot exceed 50."

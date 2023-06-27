@@ -6,9 +6,7 @@ from service.models import DishType, Dish
 
 class ModelsTest(TestCase):
     def test_dish_type_str(self) -> None:
-        dish_type = DishType.objects.create(
-            name="test"
-        )
+        dish_type = DishType.objects.create(name="test")
 
         self.assertEquals(str(dish_type), dish_type.name)
 
@@ -29,7 +27,7 @@ class ModelsTest(TestCase):
         cook = get_user_model().objects.create_user(
             username=username,
             password=password,
-            years_of_experience=years_of_experience
+            years_of_experience=years_of_experience,
         )
 
         self.assertTrue(cook.check_password(password))
