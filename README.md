@@ -19,6 +19,13 @@ pip install -r requirements.txt
 python manage.py runserver # starts Django Server
 ```
 
+## Configuration
+
+### Environment Variables
+
+The project uses environment variables for configuration.
+To set up the .env file, inside .env.sample file replace the placeholder values with your own. Then, rename it to .env.
+
 ## Features
 
 * Authentication functionality for Cook/User
