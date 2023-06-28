@@ -16,18 +16,21 @@ from service.models import DishType, Dish
 
 class IndexView(generic.TemplateView):
     template_name = "service/index.html"
-    extra_context = {
-        "dish_type_list_count": DishType.objects.count(),
-        "dish_list_count": Dish.objects.count(),
-        "cook_list_count": get_user_model().objects.count(),
-    }
+
+    def get_context_data(self, **kwargs) -> dict:
+        context = super(IndexView, self).get_context_data(**kwargs)
+
+        context["dish_type_list_count"] = DishType.objects.count()
+        context["dish_list_count"] = Dish.objects.count()
+        context["cook_list_count"] = get_user_model().objects.count()
+
+        return context
 
 
 class CookListView(generic.ListView):
     model = get_user_model()
     template_name = "service/cook_list.html"
     paginate_by = 5
-    extra_context = {"full_number_of_cooks": get_user_model().objects.count()}
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
         context = super(CookListView, self).get_context_data(**kwargs)
@@ -35,7 +38,7 @@ class CookListView(generic.ListView):
         username = self.request.GET.get("username")
 
         context["search_form"] = CookSearchForm(initial={"username": username})
-
+        context["full_number_of_cooks"] = get_user_model().objects.count()
         return context
 
     def get_queryset(self) -> QuerySet:
@@ -76,7 +79,6 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "service/dish_type_list.html"
     context_object_name = "dish_type_list"
-    extra_context = {"full_number_of_dish_types": DishType.objects.count()}
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
@@ -85,6 +87,7 @@ class DishTypeListView(generic.ListView):
         name = self.request.GET.get("name", "")
 
         context["search_form"] = DishTypeSearchForm(initial={"name": name})
+        context["full_number_of_dish_types"] = DishType.objects.count()
         return context
 
     def get_queryset(self) -> QuerySet:
@@ -125,7 +128,6 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class DishListView(generic.ListView):
     model = Dish
     template_name = "service/dish_list.html"
-    extra_context = {"full_number_of_cooks": Dish.objects.count()}
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
@@ -134,6 +136,7 @@ class DishListView(generic.ListView):
         name = self.request.GET.get("name", "")
 
         context["search_form"] = DishSearchForm(initial={"name": name})
+        context["full_number_of_cooks"] = Dish.objects.count()
         return context
 
     def get_queryset(self) -> QuerySet:
