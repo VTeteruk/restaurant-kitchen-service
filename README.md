@@ -6,6 +6,14 @@ Django project for managing restaurant's kitchen with cooks, dishes and dish typ
 
 [Restaurant project deployed to Render](https://restaurant-kitchen-service-rlsl.onrender.com)
 
+## Using
+
+You can use this username and password to login:
+
+Username: `user`; Password: `user12345`
+
+You can also create new user using the site (`I'm a chef button` in the navigation bar or `Add chief` near the list with all cooks)!
+
 ## Installation
 
 Python3 must be already installed
