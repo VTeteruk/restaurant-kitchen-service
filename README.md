@@ -4,7 +4,7 @@ Django project for managing restaurant's kitchen with cooks, dishes and dish typ
 
 ## Check it out!
 
-[Restaurant project deployed to Heroku](FUTURE_LINK)
+[Restaurant project deployed to Render](https://restaurant-kitchen-service-rlsl.onrender.com)
 
 ## Installation
 
