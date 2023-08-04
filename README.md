@@ -1,4 +1,4 @@
-# Restaurant kitchen service
+# Restaurant kitchen service - FoodieTrap
 
 Django project for managing restaurant's kitchen with cooks, dishes and dish types
 
